@@ -1,6 +1,6 @@
 [![GitHub license](https://img.shields.io/github/license/mintware-de/dart-json.svg)](https://github.com/mintware-de/dart-json/blob/master/LICENSE)
 [![Travis](https://img.shields.io/travis/mintware-de/dart-json.svg)](https://travis-ci.org/mintware-de/dart-json)
-[![Pub](https://img.shields.io/pub/v/dart-json.svg)](https://pub.dartlang.org/packages/dart-json)
+[![Pub](https://img.shields.io/pub/v/dart_json.svg)](https://pub.dartlang.org/packages/dart_json)
 [![Coverage Status](https://coveralls.io/repos/github/mintware-de/dart-json/badge.svg?branch=master)](https://coveralls.io/github/mintware-de/dart-json?branch=master)
 
 # DartJson
