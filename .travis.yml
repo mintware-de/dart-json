@@ -1,0 +1,14 @@
+language: dart
+dart:
+  - stable
+  - dev
+dart_task:
+  - test: --platform vm
+  - dartanalyzer: true
+  - dartfmt
+
+before_install:
+  - chmod +x travis.sh
+
+script:
+  - ./travis.sh
