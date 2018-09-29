@@ -14,4 +14,5 @@ import 'dart:convert';
 import 'dart:collection';
 
 part './json.dart';
+
 part './annotation/json_property.dart';

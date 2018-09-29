@@ -10,7 +10,6 @@
 import 'package:dart_json/dart_json.dart';
 
 class Person {
-
   @JsonProperty("first_name")
   String firstName;
 

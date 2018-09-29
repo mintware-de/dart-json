@@ -215,7 +215,6 @@ void main() {
     expect(mapped.additional, isNull);
   });
 
-
   test('Test serialize simple data', () {
     expect(Json.serialize(""), equals('""'));
     expect(Json.serialize(null), equals("null"));
@@ -275,7 +274,7 @@ void main() {
     p.isCool = false;
     p.additional = null;
 
-    var expectedJson ='''{
+    var expectedJson = '''{
   "first_name": "Max",
   "lastName": "Mustermann",
   "age": 23,
@@ -294,6 +293,4 @@ void main() {
 
     expect(Json.serialize(p, prettyPrint: true), equals(expectedJson));
   });
-
-
 }

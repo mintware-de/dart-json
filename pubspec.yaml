@@ -1,9 +1,9 @@
 name: 'dart_json'
-version: 1.0.0
-description: A json serializer and deserializer for humans
+version: 1.0.1
+description: A easy to use json to object deserializer and object to json serializer for dart
 author: Julian Finkler <julian@mintware.de>
 homepage: https://github.com/mintware-de/dart-json
 environment:
-  sdk: '>=2.1.0-dev.0.0 <3.0.0'
+  sdk: '>=2.0.0 <3.0.0'
 dev_dependencies:
   test: 1.3.0
