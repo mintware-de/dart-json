@@ -16,7 +16,7 @@ DartJson is a JSON to object mapper.
 Add the following to your `pubspec.yaml`:
 ```yaml
 dependencies:
-  dart_json: ^1.0.0
+  dart_json: ^2.0.0
 ```
 
 Then run `pub get`

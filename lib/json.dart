@@ -1,13 +1,13 @@
 /*
- * This file is part of the Mintware.DartJson package.
+ * This file is part of the mintware.dart_json package.
  *
- * Copyright 2018 by Julian Finkler <julian@mintware.de>
+ * Copyright 2018 - present by Julian Finkler <julian@mintware.de>
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code.
  */
 
-part of Mintware.DartJson;
+part of mintware.dart_json;
 
 /// A JSON deserialize library
 class Json {
@@ -17,7 +17,7 @@ class Json {
   static T deserialize<T>(String json) {
     var res = jsonDecode(json);
 
-    dynamic mapped = null;
+    dynamic mapped;
     if (res == null ||
         (_isSubtypeOf(T, String) && res is String) ||
         (_isSubtypeOf(T, int) && res is int) ||
@@ -57,7 +57,7 @@ class Json {
   ///
   /// Returns the type arguments as a List<Type>
   static List<Type> _getTypeArgs(Type T) {
-    var typeArgs = new List<Type>();
+    var typeArgs = List<Type>();
     reflectType(T).typeArguments.forEach((t) => typeArgs.add(t.reflectedType));
     return typeArgs;
   }
@@ -66,7 +66,7 @@ class Json {
   static dynamic _handleEntry(Type instType, dynamic entry) {
     var eType = entry.runtimeType;
 
-    dynamic res = null;
+    dynamic res;
     if (instType == dynamic ||
         instType == Null ||
         (instType == String && (eType == String || eType == Null)) ||
@@ -143,7 +143,7 @@ class Json {
 
   /// Gets the annotations of a specific type for a declaration mirror
   static List<T> _getAnnotations<T>(DeclarationMirror d) {
-    var annotations = new List<T>();
+    var annotations = List<T>();
     d.metadata.where((m) => m.hasReflectee && m.reflectee is T).forEach((e) {
       annotations.add(e.reflectee);
     });
@@ -154,8 +154,8 @@ class Json {
   static String serialize(dynamic object, {bool prettyPrint = false}) {
     var mapped = _prepareEntry(object.runtimeType, object);
 
-    JsonEncoder encoder = new JsonEncoder();
-    if (prettyPrint) encoder = new JsonEncoder.withIndent('  ');
+    JsonEncoder encoder = JsonEncoder();
+    if (prettyPrint) encoder = JsonEncoder.withIndent('  ');
 
     return encoder.convert(mapped);
   }
@@ -179,7 +179,7 @@ class Json {
 
   /// Prepares a object for serialization
   static Map<String, dynamic> _prepareObject(dynamic object) {
-    var map = new Map<String, dynamic>();
+    var map = Map<String, dynamic>();
 
     var mirror = reflect(object);
 
@@ -187,7 +187,7 @@ class Json {
     declarations.where((d) => d is VariableMirror).forEach((d) {
       var annotation = _getAnnotations<JsonProperty>(d).firstWhere(
           (p) => p.name != null && p.name != "",
-          orElse: () => new JsonProperty());
+          orElse: () => JsonProperty());
 
       var name = annotation.name;
 
@@ -205,7 +205,7 @@ class Json {
 
   /// Prepares a list for serialization
   static List _prepareList(List val) {
-    var map = new List();
+    var map = List();
     var typeArgs = _getTypeArgs(val.runtimeType);
 
     val.forEach((e) => map.add(_prepareEntry(typeArgs[0], e)));
@@ -215,7 +215,7 @@ class Json {
 
   /// Prepares a map for serialization
   static Map _prepareMap(Map val) {
-    var map = new Map<String, dynamic>();
+    var map = Map<String, dynamic>();
 
     var typeArgs = _getTypeArgs(val.runtimeType);
     val.forEach((k, v) => map[k] = _prepareEntry(typeArgs[1], v));
