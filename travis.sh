@@ -4,7 +4,7 @@
 set -e
 
 # Run the tests.
-dart -c test/tests.dart
+dart test/tests.dart
 
 # Install dart_coveralls; gather and send coverage data.
 if [ "$REPO_TOKEN" ]; then
