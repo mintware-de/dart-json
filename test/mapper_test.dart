@@ -44,7 +44,7 @@ void main() {
   },
   "isCool": true,
   "additional": null
-}''');
+}''')!;
 
     expect(mapped.firstName, equals("Max"));
     expect(mapped.lastName, equals("Mustermann"));
@@ -80,7 +80,7 @@ void main() {
   },
   "isCool": true,
   "additional": "some note"
-}]''');
+}]''')!;
 
     expect(mapped, isList);
     expect(mapped, hasLength(2));
@@ -150,7 +150,7 @@ void main() {
     ]
   },
   "nonExistent": null
-}''');
+}''')!;
     expect(mapped.firstName, equals("Peter"));
     expect(mapped.age, equals(33));
     expect(mapped.activated, isTrue);
@@ -182,12 +182,12 @@ void main() {
 
     expect(mapped.item.name, equals("All"));
     expect(mapped.item.childItems, hasLength(2));
-    expect(mapped.item.childItems[0].name, equals("Cars"));
-    expect(mapped.item.childItems[0].childItems, hasLength(1));
-    expect(mapped.item.childItems[0].childItems[0].name, equals("Premium"));
-    expect(mapped.item.childItems[0].childItems[0].childItems, hasLength(0));
-    expect(mapped.item.childItems[1].name, equals("Bikes"));
-    expect(mapped.item.childItems[1].childItems, hasLength(0));
+    expect(mapped.item.childItems![0].name, equals("Cars"));
+    expect(mapped.item.childItems![0].childItems, hasLength(1));
+    expect(mapped.item.childItems![0].childItems![0].name, equals("Premium"));
+    expect(mapped.item.childItems![0].childItems![0].childItems, hasLength(0));
+    expect(mapped.item.childItems![1].name, equals("Bikes"));
+    expect(mapped.item.childItems![1].childItems, hasLength(0));
   });
 
   test('Map with annotation', () {
@@ -203,7 +203,7 @@ void main() {
   },
   "isCool": true,
   "additional": null
-}''');
+}''')!;
 
     expect(mapped.firstName, equals("Max"));
     expect(mapped.lastName, equals("Mustermann"));
