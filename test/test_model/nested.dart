@@ -10,25 +10,25 @@
 import 'dart:collection';
 
 class NestedItem {
-  String name;
-  List<NestedItem> childItems;
+  String? name;
+  List<NestedItem>? childItems;
 }
 
 class Nested {
-  String firstName;
-  int age;
-  double height;
-  bool activated;
-  List<int> codes;
-  HashMap<String, String> otherFields;
+  String? firstName;
+  int? age;
+  double? height;
+  bool? activated;
+  List<int>? codes;
+  HashMap<String, String>? otherFields;
 
   // Nested fields
-  List<List<int>> listList;
-  List<HashMap<String, String>> listMap;
+  List<List<int>>? listList;
+  List<HashMap<String, String>>? listMap;
 
-  HashMap<String, List<int>> mapList;
-  HashMap<String, HashMap<String, String>> mapMap;
+  HashMap<String, List<int>>? mapList;
+  HashMap<String, HashMap<String, String>>? mapMap;
 
   // Object
-  NestedItem item;
+  late NestedItem item;
 }

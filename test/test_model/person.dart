@@ -11,13 +11,13 @@ import 'package:dart_json/dart_json.dart';
 
 class Person {
   @JsonProperty("first_name")
-  String firstName;
+  String? firstName;
 
-  String lastName;
-  int age;
-  double height;
-  List<String> colors;
-  Map<String, String> nicks;
-  bool isCool;
-  String additional;
+  String? lastName;
+  int? age;
+  double? height;
+  List<String>? colors;
+  Map<String, String>? nicks;
+  bool? isCool;
+  String? additional;
 }

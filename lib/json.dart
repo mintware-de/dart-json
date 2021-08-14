@@ -7,6 +7,7 @@
  * file that was distributed with this source code.
  */
 
+import 'package:collection/collection.dart' show IterableExtension;
 part of mintware.dart_json;
 
 /// A JSON deserialize library
@@ -14,7 +15,7 @@ class Json {
   /// Deserialize a [json] string to a object
   ///
   /// Returns a object of type [T]
-  static T deserialize<T>(String json) {
+  static T? deserialize<T>(String json) {
     var res = jsonDecode(json);
 
     dynamic mapped;
@@ -42,14 +43,14 @@ class Json {
   }
 
   /// Maps a list
-  static List _mapList(Type t, List l) {
+  static List? _mapList(Type t, List l) {
     var instType = _getTypeArgs(t);
     var mirror = (reflectType(List, [instType[0]]) as ClassMirror);
 
     var ref = mirror.newInstance(const Symbol(''), []);
 
-    List list = ref.reflectee;
-    l.forEach((entry) => list.add(_handleEntry(instType[0], entry)));
+    List? list = ref.reflectee;
+    l.forEach((entry) => list!.add(_handleEntry(instType[0], entry)));
     return list;
   }
 
@@ -88,12 +89,12 @@ class Json {
   }
 
   /// Maps a map
-  static Map _mapMap(Type t, Map entries) {
+  static Map? _mapMap(Type t, Map entries) {
     var typeArgs = _getTypeArgs(t);
     var mirror = (reflectType(t, typeArgs) as ClassMirror);
-    Map m = mirror.newInstance(const Symbol(''), []).reflectee;
+    Map? m = mirror.newInstance(const Symbol(''), []).reflectee;
 
-    entries.forEach((k, entry) => m[k] = _handleEntry(typeArgs[1], entry));
+    entries.forEach((k, entry) => m![k] = _handleEntry(typeArgs[1], entry));
     return m;
   }
 
@@ -126,24 +127,23 @@ class Json {
   /// Returns the DeclarationMirror
   static DeclarationMirror _getProperty(
       String name, Iterable<DeclarationMirror> variableMirrors) {
-    var declaration = variableMirrors.firstWhere(
-        (d) => MirrorSystem.getName(d.simpleName) == name,
-        orElse: () => null);
+    var declaration = variableMirrors.firstWhereOrNull(
+        (d) => MirrorSystem.getName(d.simpleName) == name);
 
     if (declaration == null) {
-      declaration = variableMirrors.firstWhere((d) {
+      declaration = variableMirrors.firstWhereOrNull((d) {
         var annotations = _getAnnotations<JsonProperty>(d);
         return annotations.length > 0 &&
-            annotations.where((m) => m.name == name).length > 0;
-      }, orElse: () => null);
+            annotations.where((m) => m!.name == name).length > 0;
+      });
     }
 
-    return declaration;
+    return declaration!;
   }
 
   /// Gets the annotations of a specific type for a declaration mirror
-  static List<T> _getAnnotations<T>(DeclarationMirror d) {
-    var annotations = List<T>();
+  static List<T?> _getAnnotations<T>(DeclarationMirror d) {
+    var annotations = List<T?>();
     d.metadata.where((m) => m.hasReflectee && m.reflectee is T).forEach((e) {
       annotations.add(e.reflectee);
     });
@@ -186,8 +186,8 @@ class Json {
     var declarations = mirror.type.declarations.values;
     declarations.where((d) => d is VariableMirror).forEach((d) {
       var annotation = _getAnnotations<JsonProperty>(d).firstWhere(
-          (p) => p.name != null && p.name != "",
-          orElse: () => JsonProperty());
+          (p) => p!.name != null && p.name != "",
+          orElse: () => JsonProperty())!;
 
       var name = annotation.name;
 

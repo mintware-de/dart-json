@@ -10,7 +10,7 @@
 part of mintware.dart_json;
 
 class JsonProperty {
-  final String name;
+  final String? name;
 
   const JsonProperty([this.name]);
 }

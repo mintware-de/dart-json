@@ -2,16 +2,16 @@ import 'package:dart_json/dart_json.dart';
 
 class Person {
   @JsonProperty("first_name")
-  String firstName;
+  String? firstName;
 
-  String lastName;
+  String? lastName;
 
-  int age;
+  int? age;
 }
 
 void main() {
   var json = '{"first_name": "Max", "lastName": "Mustermann", "age": 25}';
-  Person p = Json.deserialize<Person>(json);
+  Person p = Json.deserialize<Person>(json)!;
   print(p.firstName); // Max
   print(p.lastName); // Mustermann
   print(p.age); // 25
